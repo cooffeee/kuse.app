@@ -5,7 +5,7 @@ import Character from './Character';
 import { useApp } from '../contexts/AppContext';
 
 interface MainScreenProps {
-  onCountChange: (count: number) => void;
+  onCountChange: () => void;
 }
 
 export default function MainScreen({ onCountChange }: MainScreenProps) {
@@ -43,11 +43,11 @@ export default function MainScreen({ onCountChange }: MainScreenProps) {
         // NaNチェックを追加
         if (!isNaN(count)) {
           setTodayCount(count);
-          onCountChange(count);
+          onCountChange();
         }
       } else {
         setTodayCount(0);
-        onCountChange(0);
+        onCountChange();
       }
       
       // 継続日数を計算
@@ -64,7 +64,7 @@ export default function MainScreen({ onCountChange }: MainScreenProps) {
       
       // ローカルストレージに保存（癖IDベース）
       localStorage.setItem(`habit-count-${activeHabit.id}-${today}`, newCount.toString());
-      onCountChange(newCount);
+      onCountChange();
     }
   };
 
@@ -73,7 +73,7 @@ export default function MainScreen({ onCountChange }: MainScreenProps) {
     if (activeHabit) {
       setTodayCount(0);
       localStorage.removeItem(`habit-count-${activeHabit.id}-${today}`);
-      onCountChange(0);
+      onCountChange();
     }
   };
 
