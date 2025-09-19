@@ -34,7 +34,7 @@ export const authOptions: NextAuthOptions = {
       }
       return true;
     },
-    async session({ session, token }) {
+    async session({ session }) {
       if (session.user?.email) {
         try {
           const user = await query(

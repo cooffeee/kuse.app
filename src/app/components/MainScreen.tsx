@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import Character from './Character';
 import { useApp } from '../contexts/AppContext';
 
@@ -18,8 +18,8 @@ export default function MainScreen({ onCountChange }: MainScreenProps) {
   // 今日の日付を取得
   const today = new Date().toDateString();
 
-  // 継続日数を計算する関数
-  const calculateContinuationDays = (habitId: string) => {
+  // 継続日数を計算する関数（useCallbackでメモ化）
+  const calculateContinuationDays = useCallback((habitId: string) => {
     if (!habitId) return 0;
     
     const habit = settings.habits.find(h => h.id === habitId);
@@ -32,7 +32,7 @@ export default function MainScreen({ onCountChange }: MainScreenProps) {
     
     // 最低1日は表示
     return Math.max(1, diffDays);
-  };
+  }, [settings.habits]);
 
   // ローカルストレージから今日のカウントを読み込み
   useEffect(() => {

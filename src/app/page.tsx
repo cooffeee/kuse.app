@@ -9,7 +9,7 @@ import NavigationBar from './components/NavigationBar';
 export default function Home() {
   const [activeTab, setActiveTab] = useState<'main' | 'graph' | 'settings'>('main');
 
-  const handleCountChange = (count: number) => {
+  const handleCountChange = (_count: number) => {
     // カウント変更時の処理（必要に応じて実装）
   };
 

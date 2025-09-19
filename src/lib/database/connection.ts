@@ -24,7 +24,7 @@ export async function testConnection() {
 }
 
 // クエリ実行ヘルパー
-export async function query(text: string, params?: any[]) {
+export async function query(text: string, params?: unknown[]) {
   const client = await pool.connect();
   try {
     const result = await client.query(text, params);
