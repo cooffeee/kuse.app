@@ -54,7 +54,7 @@ export default function MainScreen({ onCountChange }: MainScreenProps) {
       const days = calculateContinuationDays(activeHabit.id);
       setContinuationDays(days);
     }
-  }, [today, onCountChange, activeHabit, settings.habits]);
+  }, [today, onCountChange, activeHabit, settings.habits, calculateContinuationDays]);
 
   // カウントボタンが押された時の処理
   const handleCountClick = () => {

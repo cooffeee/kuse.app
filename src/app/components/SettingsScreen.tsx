@@ -76,12 +76,6 @@ export default function SettingsScreen() {
     setActiveHabit(habitId);
   };
 
-  // 今日のカウントを取得する関数
-  const getTodayCount = (habitId: string) => {
-    const today = new Date().toDateString();
-    const savedCount = localStorage.getItem(`habit-count-${habitId}-${today}`);
-    return savedCount ? parseInt(savedCount, 10) : 0;
-  };
 
   // 継続日数を計算する関数
   const calculateContinuationDays = (habitId: string) => {

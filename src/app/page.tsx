@@ -8,10 +8,9 @@ import NavigationBar from './components/NavigationBar';
 
 export default function Home() {
   const [activeTab, setActiveTab] = useState<'main' | 'graph' | 'settings'>('main');
-  const [todayCount, setTodayCount] = useState(0);
 
   const handleCountChange = (count: number) => {
-    setTodayCount(count);
+    // カウント変更時の処理（必要に応じて実装）
   };
 
   const renderActiveScreen = () => {

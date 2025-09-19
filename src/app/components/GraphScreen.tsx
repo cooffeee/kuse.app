@@ -178,8 +178,8 @@ export default function GraphScreen() {
 
               {/* 棒グラフ */}
               <div className="h-64 flex items-end justify-between gap-2 mb-4">
-                {habitData.dayData.map((day, index) => (
-                  <div key={day.date} className="flex flex-col items-center flex-1">
+                 {habitData.dayData.map((day) => (
+                   <div key={day.date} className="flex flex-col items-center flex-1">
                     <div className="w-full flex flex-col items-center">
                       {/* カウント数表示 */}
                       <div className="text-xs font-semibold text-gray-600 mb-1">
@@ -206,9 +206,9 @@ export default function GraphScreen() {
               </div>
 
               {/* X軸ラベル */}
-              <div className="flex justify-between text-sm text-gray-300">
-                {habitData.dayData.map((day, index) => (
-                  <div key={day.date} className="flex-1 text-center">
+               <div className="flex justify-between text-sm text-gray-300">
+                 {habitData.dayData.map((day) => (
+                   <div key={day.date} className="flex-1 text-center">
                     <div className="font-semibold">{formatDate(day.date)}</div>
                     {isToday(day.date) && (
                       <div className="text-xs font-bold mt-1 px-2 py-1 bg-white/20 rounded-lg" style={{ color: habitData.habit.color }}>
