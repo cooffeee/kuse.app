@@ -1,7 +1,6 @@
 'use client';
 
 import { useState, useEffect, useCallback } from 'react';
-import Character from './Character';
 import { useApp } from '../contexts/AppContext';
 
 interface MainScreenProps {
@@ -106,10 +105,9 @@ export default function MainScreen({ onCountChange }: MainScreenProps) {
           <div className="inline-flex items-center justify-center w-20 h-20 bg-gradient-to-br from-pink-500 to-rose-400 rounded-2xl mb-6 shadow-2xl">
             <span className="text-white text-2xl font-black">クセ</span>
           </div>
-          <h1 className="text-4xl font-black text-transparent bg-clip-text bg-gradient-to-r from-purple-400 via-pink-400 to-blue-400 mb-3">
-            クセナンカイ↑
+          <h1 className="text-4xl font-black text-transparent bg-clip-text bg-gradient-to-r from-purple-400 via-pink-400 to-blue-400 mb-6">
+            クセナンカイ➕
           </h1>
-          <p className="text-gray-300 text-lg">カウント</p>
         </div>
 
         {/* 癖の切り替えアコーディオン */}
@@ -220,39 +218,31 @@ export default function MainScreen({ onCountChange }: MainScreenProps) {
         )}
 
 
-        {/* カウントボタンとキャラクターのコンテナ */}
-        <div className="flex flex-col items-center mb-12">
-          {/* メインカウントボタン */}
-          <div className="mb-8">
-            <button
-              onClick={handleCountClick}
-              disabled={!activeHabit}
-              className={`w-56 h-56 rounded-3xl shadow-2xl transition-all duration-300 flex items-center justify-center group ${
-                activeHabit 
-                  ? 'hover:shadow-3xl transform hover:scale-105 active:scale-95' 
-                  : 'opacity-50 cursor-not-allowed'
-              }`}
-              style={{
-                background: activeHabit 
-                  ? `linear-gradient(135deg, ${activeHabit.color}, ${adjustColor(activeHabit.color, -20)})`
-                  : 'linear-gradient(135deg, #9CA3AF, #6B7280)'
-              }}
-            >
-              <div className="text-center text-white">
-                <div className="text-7xl font-black mb-3 group-hover:animate-bounce">
-                  {todayCount}
-                </div>
-                <div className="text-xl font-semibold">
-                  {activeHabit?.name || '癖'}をカウント
-                </div>
+        {/* メインカウントボタン */}
+        <div className="flex justify-center mb-12">
+          <button
+            onClick={handleCountClick}
+            disabled={!activeHabit}
+            className={`w-56 h-56 rounded-3xl shadow-2xl transition-all duration-300 flex items-center justify-center group ${
+              activeHabit 
+                ? 'hover:shadow-3xl transform hover:scale-105 active:scale-95' 
+                : 'opacity-50 cursor-not-allowed'
+            }`}
+            style={{
+              background: activeHabit 
+                ? `linear-gradient(135deg, ${activeHabit.color}, ${adjustColor(activeHabit.color, -20)})`
+                : 'linear-gradient(135deg, #9CA3AF, #6B7280)'
+            }}
+          >
+            <div className="text-center text-white">
+              <div className="text-7xl font-black mb-3 group-hover:animate-bounce">
+                {todayCount}
               </div>
-            </button>
-          </div>
-
-          {/* キャラクター表示エリア */}
-          <div className="flex justify-center">
-            <Character count={todayCount} />
-          </div>
+              <div className="text-xl font-semibold">
+                {activeHabit?.name || '癖'}をカウント
+              </div>
+            </div>
+          </button>
         </div>
 
         {/* 継続日数表示 */}

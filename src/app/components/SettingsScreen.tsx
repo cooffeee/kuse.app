@@ -148,10 +148,9 @@ export default function SettingsScreen() {
           <div className="inline-flex items-center justify-center w-20 h-20 bg-gradient-to-br from-pink-500 to-rose-400 rounded-2xl mb-6 shadow-2xl">
             <span className="text-white text-2xl font-black">クセ</span>
           </div>
-          <h1 className="text-4xl font-black text-transparent bg-clip-text bg-gradient-to-r from-purple-400 via-pink-400 to-blue-400 mb-3">
+          <h1 className="text-4xl font-black text-transparent bg-clip-text bg-gradient-to-r from-purple-400 via-pink-400 to-blue-400 mb-6">
             設定
           </h1>
-          <p className="text-gray-300 text-lg">設定</p>
         </div>
 
         {/* 設定項目 */}
