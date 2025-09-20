@@ -64,7 +64,7 @@ export function AppProvider({ children }: { children: ReactNode }) {
         const parsed = JSON.parse(savedSettings);
         setSettings({ ...defaultSettings, ...parsed });
       } catch (error) {
-        console.error('設定の読み込みに失敗しました:', error);
+        // 設定の読み込みに失敗した場合はデフォルト設定を使用
       }
     }
   }, []);
