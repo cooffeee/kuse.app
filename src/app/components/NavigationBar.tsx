@@ -47,10 +47,10 @@ export default function NavigationBar({ activeTab, onTabChange }: NavigationBarP
   ];
 
   return (
-    <nav className="fixed bottom-0 left-0 right-0 z-50 w-full">
-      <div className="max-w-md mx-auto w-full">
+    <nav className="fixed bottom-0 left-0 right-0 z-50 w-full" style={{ backgroundColor: 'transparent' }}>
+      <div className="max-w-md mx-auto w-full" style={{ backgroundColor: 'transparent' }}>
         {/* 背景グラデーションとブラー効果 */}
-        <div className="bg-gradient-to-t from-slate-900/95 via-purple-900/90 to-slate-900/95 backdrop-blur-xl border-t border-white/20 shadow-2xl w-full">
+        <div className="bg-gradient-to-t from-slate-900 via-purple-900 to-slate-900 backdrop-blur-xl border-t border-white/20 shadow-2xl w-full" style={{ backgroundColor: 'transparent' }}>
           <div className="flex justify-around items-center py-3 px-4 w-full">
             {tabs.map((tab) => (
               <button

@@ -20,11 +20,12 @@
 }
 
 body {
-  background: var(--background);
+  background: linear-gradient(135deg, #1e1b4b 0%, #7c3aed 50%, #1e1b4b 100%);
   color: var(--foreground);
   font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
   margin: 0;
   padding: 0;
+  min-height: 100vh;
 }
 
 /* カスタムアニメーション */

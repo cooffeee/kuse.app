@@ -261,12 +261,14 @@ export default function MainScreen({ onCountChange }: MainScreenProps) {
         </div>
 
         {/* デバッグ用リセットボタン */}
-        <button
-          onClick={handleReset}
-          className="px-6 py-3 bg-gradient-to-r from-gray-600 to-gray-700 text-white rounded-2xl hover:from-gray-700 hover:to-gray-800 transition-all duration-300 text-sm font-semibold shadow-lg hover:shadow-xl transform hover:scale-105"
-        >
-          リセット
-        </button>
+        <div className="flex justify-center">
+          <button
+            onClick={handleReset}
+            className="px-6 py-3 bg-gradient-to-r from-gray-600 to-gray-700 text-white rounded-2xl hover:from-gray-700 hover:to-gray-800 transition-all duration-300 text-sm font-semibold shadow-lg hover:shadow-xl transform hover:scale-105"
+          >
+            リセット
+          </button>
+        </div>
       </div>
     </div>
   );
