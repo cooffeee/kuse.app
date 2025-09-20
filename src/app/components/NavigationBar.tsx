@@ -47,24 +47,24 @@ export default function NavigationBar({ activeTab, onTabChange }: NavigationBarP
   ];
 
   return (
-    <nav className="fixed bottom-0 left-0 right-0 z-50 w-full" style={{ backgroundColor: 'transparent' }}>
-      <div className="max-w-md mx-auto w-full" style={{ backgroundColor: 'transparent' }}>
-        {/* 背景グラデーションとブラー効果 */}
-        <div className="bg-gradient-to-t from-slate-900 via-purple-900 to-slate-900 backdrop-blur-xl border-t border-white/20 shadow-2xl w-full" style={{ backgroundColor: 'transparent' }}>
-          <div className="flex justify-around items-center py-3 px-4 w-full">
+    <nav className="fixed bottom-0 left-0 right-0 z-50 w-full">
+      {/* シックな黒調の背景 */}
+      <div className="bg-black/95 backdrop-blur-xl border-t border-gray-800/50 shadow-2xl w-full">
+        <div className="max-w-md mx-auto">
+          <div className="flex justify-around items-center py-4 px-4">
             {tabs.map((tab) => (
               <button
                 key={tab.id}
                 onClick={() => onTabChange(tab.id)}
                 className={`flex flex-col items-center py-3 px-4 rounded-2xl transition-all duration-300 group relative overflow-hidden ${
                   activeTab === tab.id
-                    ? 'bg-gradient-to-br from-pink-500/90 to-purple-600/90 text-white shadow-2xl transform scale-110 border border-white/30'
-                    : 'text-gray-300 hover:text-white hover:bg-white/10 hover:scale-105'
+                    ? 'bg-gradient-to-br from-gray-700 to-gray-800 text-white shadow-2xl transform scale-110 border border-gray-600/50'
+                    : 'text-gray-400 hover:text-white hover:bg-gray-800/50 hover:scale-105'
                 }`}
               >
                 {/* アクティブ時の光る効果 */}
                 {activeTab === tab.id && (
-                  <div className="absolute inset-0 bg-gradient-to-r from-pink-400/20 via-purple-400/20 to-pink-400/20 animate-pulse rounded-2xl"></div>
+                  <div className="absolute inset-0 bg-gradient-to-r from-gray-600/20 via-gray-500/20 to-gray-600/20 animate-pulse rounded-2xl"></div>
                 )}
                 
                 {/* アイコンコンテナ */}
@@ -87,7 +87,7 @@ export default function NavigationBar({ activeTab, onTabChange }: NavigationBarP
                 
                 {/* アクティブ時の下線 */}
                 {activeTab === tab.id && (
-                  <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-8 h-1 bg-gradient-to-r from-pink-400 to-purple-400 rounded-full shadow-lg"></div>
+                  <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-8 h-1 bg-gradient-to-r from-gray-400 to-gray-300 rounded-full shadow-lg"></div>
                 )}
               </button>
             ))}
