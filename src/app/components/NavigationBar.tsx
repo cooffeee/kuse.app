@@ -9,21 +9,21 @@ export default function NavigationBar({ activeTab, onTabChange }: NavigationBarP
   const tabs = [
     {
       id: 'main' as const,
-      label: 'メイン',
+      label: 'カウント',
       icon: '🏠',
-      description: 'カウント'
+      description: ''
     },
     {
       id: 'graph' as const,
       label: 'グラフ',
       icon: '📊',
-      description: '履歴'
+      description: ''
     },
     {
       id: 'settings' as const,
       label: '設定',
       icon: '⚙️',
-      description: '設定'
+      description: ''
     }
   ];
 
@@ -35,20 +35,17 @@ export default function NavigationBar({ activeTab, onTabChange }: NavigationBarP
             <button
               key={tab.id}
               onClick={() => onTabChange(tab.id)}
-              className={`flex flex-col items-center py-3 px-4 rounded-xl transition-all duration-200 ${
+              className={`flex flex-col items-center py-2 px-3 rounded-xl transition-all duration-200 ${
                 activeTab === tab.id
                   ? 'bg-gradient-to-r from-pink-500 to-purple-500 text-white shadow-lg transform scale-105'
                   : 'text-gray-600 hover:text-gray-800 hover:bg-gray-50'
               }`}
             >
-              <div className="text-2xl mb-1">
+              <div className="text-xl mb-1">
                 {tab.icon}
               </div>
               <div className="text-xs font-medium">
                 {tab.label}
-              </div>
-              <div className="text-xs opacity-75">
-                {tab.description}
               </div>
             </button>
           ))}

@@ -151,7 +151,7 @@ export default function SettingsScreen() {
           <h1 className="text-4xl font-black text-transparent bg-clip-text bg-gradient-to-r from-purple-400 via-pink-400 to-blue-400 mb-3">
             設定
           </h1>
-          <p className="text-gray-300 text-lg">アプリの設定をカスタマイズできます</p>
+          <p className="text-gray-300 text-lg">設定</p>
         </div>
 
         {/* 設定項目 */}

@@ -107,9 +107,9 @@ export default function MainScreen({ onCountChange }: MainScreenProps) {
             <span className="text-white text-2xl font-black">クセ</span>
           </div>
           <h1 className="text-4xl font-black text-transparent bg-clip-text bg-gradient-to-r from-purple-400 via-pink-400 to-blue-400 mb-3">
-            クセナンカイ⤴
+            クセナンカイ↑
           </h1>
-          <p className="text-gray-300 text-lg">癖をカウントして、より良い習慣を身につけよう</p>
+          <p className="text-gray-300 text-lg">カウント</p>
         </div>
 
         {/* 癖の切り替えアコーディオン */}

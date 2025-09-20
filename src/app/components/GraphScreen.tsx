@@ -116,10 +116,9 @@ export default function GraphScreen() {
             <span className="text-white text-2xl font-black">クセ</span>
           </div>
           <h1 className="text-4xl font-black text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 mb-3">
-            カウント履歴
+            グラフ
           </h1>
-          <p className="text-gray-300 text-lg">過去のデータを視覚的に確認できます</p>
-          
+          <p className="text-gray-300 text-lg">グラフ</p>
         </div>
 
         {/* 期間選択ボタン */}
