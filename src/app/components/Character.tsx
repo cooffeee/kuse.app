@@ -351,12 +351,12 @@ const Character: React.FC<CharacterProps> = ({ count, maxCount }) => {
   return (
     <div className="flex flex-col items-center justify-center mt-6">
       {/* オリジナル猫キャラクター */}
-      <div className="relative w-20 h-20 mb-4 flex items-center justify-center">
+      <div className="relative w-20 h-20 mb-6 flex items-center justify-center">
         {renderCharacter()}
       </div>
       
       {/* キャラクターのメッセージ */}
-      <div className="text-center">
+      <div className="text-center mt-2">
         <p className="text-white text-lg font-medium bg-gradient-to-r from-pink-500/20 to-purple-500/20 backdrop-blur-sm rounded-lg px-4 py-2 border border-pink-300/30">
           {message}
         </p>
