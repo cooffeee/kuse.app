@@ -140,23 +140,7 @@ const Character: React.FC<CharacterProps> = ({ count, maxCount }) => {
         />
         
         {/* 猫の口（表情に応じて変化） */}
-        {expression === 'neutral' ? (
-          <path
-            d="M 40 45 Q 40 48 35 50"
-            stroke="#333"
-            strokeWidth="2"
-            fill="none"
-            strokeLinecap="round"
-          />
-        ) : expression === 'happy' ? (
-          <path
-            d="M 40 45 Q 40 50 35 52"
-            stroke="#333"
-            strokeWidth="2"
-            fill="none"
-            strokeLinecap="round"
-          />
-        ) : expression === 'excited' ? (
+        {expression === 'excited' ? (
           <ellipse
             cx="40"
             cy="48"
@@ -176,7 +160,7 @@ const Character: React.FC<CharacterProps> = ({ count, maxCount }) => {
             stroke="#FF1493"
             strokeWidth="1"
           />
-        ) : (
+        ) : expression === 'ecstatic' ? (
           <ellipse
             cx="40"
             cy="48"
@@ -186,7 +170,7 @@ const Character: React.FC<CharacterProps> = ({ count, maxCount }) => {
             stroke="#FF1493"
             strokeWidth="1"
           />
-        )}
+        ) : null}
         
         {/* 猫のひげ（左） */}
         <path
