@@ -8,24 +8,24 @@ interface CharacterProps {
 }
 
 const Character: React.FC<CharacterProps> = ({ count, maxCount }) => {
-  // カウント数に基づいて表情を決定（5段階）
+  // カウント数に基づいて表情を決定（5段階）- 癖をなくすためのアプリ
   const getExpression = () => {
     if (count === 0) return 'neutral'; // 0回: 普通
-    if (count <= maxCount * 0.2) return 'happy'; // 20%以下: 嬉しい
-    if (count <= maxCount * 0.4) return 'excited'; // 40%以下: 興奮
-    if (count <= maxCount * 0.6) return 'very-happy'; // 60%以下: とても嬉しい
-    return 'ecstatic'; // 60%以上: 最高に嬉しい
+    if (count <= maxCount * 0.2) return 'worried'; // 20%以下: 心配
+    if (count <= maxCount * 0.4) return 'sad'; // 40%以下: 悲しい
+    if (count <= maxCount * 0.6) return 'very-sad'; // 60%以下: とても悲しい
+    return 'desperate'; // 60%以上: 絶望的
   };
 
   const expression = getExpression();
   
-  // カウント数に基づいてメッセージを決定
+  // カウント数に基づいてメッセージを決定（癖をなくすためのアプリ）
   const getMessage = () => {
     if (count === 0) return '今日も頑張ろう！';
-    if (count <= maxCount * 0.2) return 'いい調子だね！';
-    if (count <= maxCount * 0.4) return 'すごいね！';
-    if (count <= maxCount * 0.6) return '最高だよ！';
-    return '君は本当にすごい！';
+    if (count <= maxCount * 0.2) return 'よく耐えてるね...';
+    if (count <= maxCount * 0.4) return '応援してるよ！';
+    if (count <= maxCount * 0.6) return '心配で仕方ないよ...';
+    return 'あきらめないで！';
   };
 
   const message = getMessage();
@@ -105,14 +105,14 @@ const Character: React.FC<CharacterProps> = ({ count, maxCount }) => {
           cy="35"
           rx="2.5"
           ry="3.5"
-          fill={expression === 'neutral' ? '#333' : expression === 'happy' ? '#0066CC' : expression === 'excited' ? '#00AA00' : expression === 'very-happy' ? '#FF6600' : '#FF0000'}
+          fill={expression === 'neutral' ? '#333' : expression === 'worried' ? '#FFA500' : expression === 'sad' ? '#FF6B6B' : expression === 'very-sad' ? '#8B0000' : '#4B0000'}
         />
         <ellipse
           cx="48"
           cy="35"
           rx="2.5"
           ry="3.5"
-          fill={expression === 'neutral' ? '#333' : expression === 'happy' ? '#0066CC' : expression === 'excited' ? '#00AA00' : expression === 'very-happy' ? '#FF6600' : '#FF0000'}
+          fill={expression === 'neutral' ? '#333' : expression === 'worried' ? '#FFA500' : expression === 'sad' ? '#FF6B6B' : expression === 'very-sad' ? '#8B0000' : '#4B0000'}
         />
         
         {/* 目のハイライト */}
@@ -140,35 +140,29 @@ const Character: React.FC<CharacterProps> = ({ count, maxCount }) => {
         />
         
         {/* 猫の口（表情に応じて変化） */}
-        {expression === 'excited' ? (
-          <ellipse
-            cx="40"
-            cy="48"
-            rx="3"
-            ry="2"
-            fill="#FF69B4"
-            stroke="#FF1493"
-            strokeWidth="1"
+        {expression === 'sad' ? (
+          <path
+            d="M 35 48 Q 40 45 45 48"
+            stroke="#333"
+            strokeWidth="2"
+            fill="none"
+            strokeLinecap="round"
           />
-        ) : expression === 'very-happy' ? (
-          <ellipse
-            cx="40"
-            cy="48"
-            rx="4"
-            ry="3"
-            fill="#FF69B4"
-            stroke="#FF1493"
-            strokeWidth="1"
+        ) : expression === 'very-sad' ? (
+          <path
+            d="M 35 48 Q 40 44 45 48"
+            stroke="#333"
+            strokeWidth="2"
+            fill="none"
+            strokeLinecap="round"
           />
-        ) : expression === 'ecstatic' ? (
-          <ellipse
-            cx="40"
-            cy="48"
-            rx="5"
-            ry="4"
-            fill="#FF69B4"
-            stroke="#FF1493"
-            strokeWidth="1"
+        ) : expression === 'desperate' ? (
+          <path
+            d="M 35 48 Q 40 42 45 48"
+            stroke="#333"
+            strokeWidth="2"
+            fill="none"
+            strokeLinecap="round"
           />
         ) : null}
         
@@ -244,17 +238,34 @@ const Character: React.FC<CharacterProps> = ({ count, maxCount }) => {
         />
         
         {/* 眉毛（表情に応じて変化） */}
-        {expression === 'happy' || expression === 'excited' || expression === 'very-happy' || expression === 'ecstatic' ? (
+        {expression === 'worried' ? (
           <>
             <path
-              d="M 28 30 Q 32 27 36 30"
+              d="M 28 30 Q 32 32 36 30"
               stroke="#FF8C00"
               strokeWidth="2"
               fill="none"
               strokeLinecap="round"
             />
             <path
-              d="M 52 30 Q 48 27 44 30"
+              d="M 52 30 Q 48 32 44 30"
+              stroke="#FF8C00"
+              strokeWidth="2"
+              fill="none"
+              strokeLinecap="round"
+            />
+          </>
+        ) : expression === 'sad' || expression === 'very-sad' || expression === 'desperate' ? (
+          <>
+            <path
+              d="M 28 30 Q 32 33 36 30"
+              stroke="#FF8C00"
+              strokeWidth="2"
+              fill="none"
+              strokeLinecap="round"
+            />
+            <path
+              d="M 52 30 Q 48 33 44 30"
               stroke="#FF8C00"
               strokeWidth="2"
               fill="none"
