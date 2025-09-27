@@ -30,7 +30,7 @@ const Character: React.FC<CharacterProps> = ({ count, maxCount }) => {
 
   const message = getMessage();
 
-  // オリジナルカモノハシキャラクターのSVG
+  // オリジナル猫キャラクターのSVG
   const renderCharacter = () => {
     return (
       <svg
@@ -40,131 +40,118 @@ const Character: React.FC<CharacterProps> = ({ count, maxCount }) => {
         className="drop-shadow-lg"
         style={{ filter: 'drop-shadow(0 4px 8px rgba(0, 0, 0, 0.2))' }}
       >
-        {/* カモノハシの体 */}
+        {/* 猫の頭 */}
         <ellipse
           cx="40"
-          cy="45"
-          rx="25"
+          cy="40"
+          rx="22"
           ry="20"
-          fill="#8B4513"
-          stroke="#654321"
-          strokeWidth="1"
+          fill="#FFA500"
+          stroke="#FF8C00"
+          strokeWidth="1.5"
         />
         
-        {/* カモノハシの頭 */}
-        <ellipse
-          cx="40"
-          cy="30"
-          rx="18"
-          ry="15"
-          fill="#8B4513"
-          stroke="#654321"
-          strokeWidth="1"
+        {/* 猫の耳（左） */}
+        <polygon
+          points="25,25 20,15 30,20"
+          fill="#FFA500"
+          stroke="#FF8C00"
+          strokeWidth="1.5"
         />
-        
-        {/* くちばし */}
-        <ellipse
-          cx="40"
-          cy="25"
-          rx="8"
-          ry="4"
+        <polygon
+          points="27,22 22,17 30,20"
           fill="#FFB6C1"
           stroke="#FF69B4"
           strokeWidth="1"
         />
         
-        {/* 目 */}
-        <circle
-          cx="35"
-          cy="28"
-          r="3"
-          fill="white"
+        {/* 猫の耳（右） */}
+        <polygon
+          points="55,25 60,15 50,20"
+          fill="#FFA500"
+          stroke="#FF8C00"
+          strokeWidth="1.5"
         />
-        <circle
-          cx="45"
-          cy="28"
-          r="3"
-          fill="white"
+        <polygon
+          points="53,22 58,17 50,20"
+          fill="#FFB6C1"
+          stroke="#FF69B4"
+          strokeWidth="1"
         />
         
-        {/* 瞳 */}
-        <circle
-          cx="35"
-          cy="28"
-          r="2"
+        {/* 猫の目（左） */}
+        <ellipse
+          cx="32"
+          cy="35"
+          rx="4"
+          ry="5"
+          fill="white"
+          stroke="#333"
+          strokeWidth="1"
+        />
+        <ellipse
+          cx="48"
+          cy="35"
+          rx="4"
+          ry="5"
+          fill="white"
+          stroke="#333"
+          strokeWidth="1"
+        />
+        
+        {/* 猫の瞳（左） */}
+        <ellipse
+          cx="32"
+          cy="35"
+          rx="2.5"
+          ry="3.5"
           fill={expression === 'neutral' ? '#333' : expression === 'happy' ? '#0066CC' : expression === 'excited' ? '#00AA00' : expression === 'very-happy' ? '#FF6600' : '#FF0000'}
         />
-        <circle
-          cx="45"
-          cy="28"
-          r="2"
+        <ellipse
+          cx="48"
+          cy="35"
+          rx="2.5"
+          ry="3.5"
           fill={expression === 'neutral' ? '#333' : expression === 'happy' ? '#0066CC' : expression === 'excited' ? '#00AA00' : expression === 'very-happy' ? '#FF6600' : '#FF0000'}
         />
         
         {/* 目のハイライト */}
-        <circle
-          cx="35.5"
-          cy="27.5"
-          r="0.8"
+        <ellipse
+          cx="33"
+          cy="33"
+          rx="1"
+          ry="1.5"
           fill="white"
         />
-        <circle
-          cx="45.5"
-          cy="27.5"
-          r="0.8"
+        <ellipse
+          cx="49"
+          cy="33"
+          rx="1"
+          ry="1.5"
           fill="white"
         />
         
-        {/* 眉毛（表情に応じて変化） */}
-        {expression === 'happy' || expression === 'excited' || expression === 'very-happy' || expression === 'ecstatic' ? (
-          <>
-            <path
-              d="M 30 25 Q 35 22 40 25"
-              stroke="#654321"
-              strokeWidth="2"
-              fill="none"
-              strokeLinecap="round"
-            />
-            <path
-              d="M 50 25 Q 45 22 40 25"
-              stroke="#654321"
-              strokeWidth="2"
-              fill="none"
-              strokeLinecap="round"
-            />
-          </>
-        ) : (
-          <>
-            <path
-              d="M 30 25 Q 35 25 40 25"
-              stroke="#654321"
-              strokeWidth="2"
-              fill="none"
-              strokeLinecap="round"
-            />
-            <path
-              d="M 50 25 Q 45 25 40 25"
-              stroke="#654321"
-              strokeWidth="2"
-              fill="none"
-              strokeLinecap="round"
-            />
-          </>
-        )}
+        {/* 猫の鼻 */}
+        <polygon
+          points="40,42 38,45 42,45"
+          fill="#FFB6C1"
+          stroke="#FF69B4"
+          strokeWidth="1"
+        />
         
-        {/* 口（表情に応じて変化） */}
+        {/* 猫の口（表情に応じて変化） */}
         {expression === 'neutral' ? (
           <path
-            d="M 35 32 Q 40 34 45 32"
-            stroke="#654321"
+            d="M 40 45 Q 40 48 35 50"
+            stroke="#333"
             strokeWidth="2"
             fill="none"
             strokeLinecap="round"
           />
         ) : expression === 'happy' ? (
           <path
-            d="M 35 32 Q 40 35 45 32"
-            stroke="#654321"
+            d="M 40 45 Q 40 50 35 52"
+            stroke="#333"
             strokeWidth="2"
             fill="none"
             strokeLinecap="round"
@@ -172,8 +159,8 @@ const Character: React.FC<CharacterProps> = ({ count, maxCount }) => {
         ) : expression === 'excited' ? (
           <ellipse
             cx="40"
-            cy="33"
-            rx="4"
+            cy="48"
+            rx="3"
             ry="2"
             fill="#FF69B4"
             stroke="#FF1493"
@@ -182,8 +169,8 @@ const Character: React.FC<CharacterProps> = ({ count, maxCount }) => {
         ) : expression === 'very-happy' ? (
           <ellipse
             cx="40"
-            cy="33"
-            rx="5"
+            cy="48"
+            rx="4"
             ry="3"
             fill="#FF69B4"
             stroke="#FF1493"
@@ -192,8 +179,8 @@ const Character: React.FC<CharacterProps> = ({ count, maxCount }) => {
         ) : (
           <ellipse
             cx="40"
-            cy="33"
-            rx="6"
+            cy="48"
+            rx="5"
             ry="4"
             fill="#FF69B4"
             stroke="#FF1493"
@@ -201,100 +188,120 @@ const Character: React.FC<CharacterProps> = ({ count, maxCount }) => {
           />
         )}
         
-        {/* 足 */}
-        <ellipse
-          cx="30"
-          cy="60"
-          rx="6"
-          ry="8"
-          fill="#8B4513"
-          stroke="#654321"
-          strokeWidth="1"
+        {/* 猫のひげ（左） */}
+        <path
+          d="M 20 40 Q 15 40 10 38"
+          stroke="#333"
+          strokeWidth="1.5"
+          fill="none"
+          strokeLinecap="round"
         />
-        <ellipse
-          cx="50"
-          cy="60"
-          rx="6"
-          ry="8"
-          fill="#8B4513"
-          stroke="#654321"
-          strokeWidth="1"
+        <path
+          d="M 20 42 Q 15 42 10 40"
+          stroke="#333"
+          strokeWidth="1.5"
+          fill="none"
+          strokeLinecap="round"
         />
-        
-        {/* 尻尾 */}
-        <ellipse
-          cx="15"
-          cy="50"
-          rx="8"
-          ry="15"
-          fill="#8B4513"
-          stroke="#654321"
-          strokeWidth="1"
-          transform="rotate(-30 15 50)"
+        <path
+          d="M 20 44 Q 15 44 10 42"
+          stroke="#333"
+          strokeWidth="1.5"
+          fill="none"
+          strokeLinecap="round"
         />
         
-        {/* 尻尾の模様 */}
+        {/* 猫のひげ（右） */}
+        <path
+          d="M 60 40 Q 65 40 70 38"
+          stroke="#333"
+          strokeWidth="1.5"
+          fill="none"
+          strokeLinecap="round"
+        />
+        <path
+          d="M 60 42 Q 65 42 70 40"
+          stroke="#333"
+          strokeWidth="1.5"
+          fill="none"
+          strokeLinecap="round"
+        />
+        <path
+          d="M 60 44 Q 65 44 70 42"
+          stroke="#333"
+          strokeWidth="1.5"
+          fill="none"
+          strokeLinecap="round"
+        />
+        
+        {/* 猫の模様（額） */}
         <ellipse
-          cx="12"
+          cx="40"
+          cy="28"
+          rx="3"
+          ry="2"
+          fill="#FF8C00"
+        />
+        
+        {/* 猫の模様（頬） */}
+        <ellipse
+          cx="25"
           cy="45"
-          rx="3"
-          ry="6"
-          fill="#654321"
-          transform="rotate(-30 12 45)"
+          rx="2"
+          ry="3"
+          fill="#FF8C00"
         />
         <ellipse
-          cx="18"
-          cy="55"
-          rx="3"
-          ry="6"
-          fill="#654321"
-          transform="rotate(-30 18 55)"
+          cx="55"
+          cy="45"
+          rx="2"
+          ry="3"
+          fill="#FF8C00"
         />
         
-        {/* 手 */}
-        <ellipse
-          cx="20"
-          cy="40"
-          rx="4"
-          ry="6"
-          fill="#8B4513"
-          stroke="#654321"
-          strokeWidth="1"
-          transform="rotate(-20 20 40)"
-        />
-        <ellipse
-          cx="60"
-          cy="40"
-          rx="4"
-          ry="6"
-          fill="#8B4513"
-          stroke="#654321"
-          strokeWidth="1"
-          transform="rotate(20 60 40)"
-        />
-        
-        {/* 水かき */}
-        <path
-          d="M 18 38 Q 20 42 22 38"
-          stroke="#654321"
-          strokeWidth="1.5"
-          fill="none"
-          strokeLinecap="round"
-        />
-        <path
-          d="M 58 38 Q 60 42 62 38"
-          stroke="#654321"
-          strokeWidth="1.5"
-          fill="none"
-          strokeLinecap="round"
-        />
+        {/* 眉毛（表情に応じて変化） */}
+        {expression === 'happy' || expression === 'excited' || expression === 'very-happy' || expression === 'ecstatic' ? (
+          <>
+            <path
+              d="M 28 30 Q 32 27 36 30"
+              stroke="#FF8C00"
+              strokeWidth="2"
+              fill="none"
+              strokeLinecap="round"
+            />
+            <path
+              d="M 52 30 Q 48 27 44 30"
+              stroke="#FF8C00"
+              strokeWidth="2"
+              fill="none"
+              strokeLinecap="round"
+            />
+          </>
+        ) : (
+          <>
+            <path
+              d="M 28 30 Q 32 30 36 30"
+              stroke="#FF8C00"
+              strokeWidth="2"
+              fill="none"
+              strokeLinecap="round"
+            />
+            <path
+              d="M 52 30 Q 48 30 44 30"
+              stroke="#FF8C00"
+              strokeWidth="2"
+              fill="none"
+              strokeLinecap="round"
+            />
+          </>
+        )}
       </svg>
     );
   };
 
   return (
     <div className="flex flex-col items-center justify-center mt-6">
-      {/* オリジナルカモノハシキャラクター */}
+      {/* オリジナル猫キャラクター */}
       <div className="relative w-20 h-20 mb-4 flex items-center justify-center">
         {renderCharacter()}
       </div>
