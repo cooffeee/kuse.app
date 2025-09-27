@@ -8,21 +8,27 @@ import NavigationBar from './components/NavigationBar';
 
 export default function Home() {
   const [activeTab, setActiveTab] = useState<'main' | 'graph' | 'settings'>('main');
+  const [selectedHabitId, setSelectedHabitId] = useState<string | null>(null);
 
   const handleCountChange = () => {
     // カウント変更時の処理（必要に応じて実装）
   };
 
+  const handleNavigateToGraph = (habitId: string) => {
+    setSelectedHabitId(habitId);
+    setActiveTab('graph');
+  };
+
   const renderActiveScreen = () => {
     switch (activeTab) {
       case 'main':
-        return <MainScreen onCountChange={handleCountChange} />;
+        return <MainScreen onCountChange={handleCountChange} onNavigateToGraph={handleNavigateToGraph} />;
       case 'graph':
-        return <GraphScreen />;
+        return <GraphScreen selectedHabitId={selectedHabitId} />;
       case 'settings':
         return <SettingsScreen />;
       default:
-        return <MainScreen onCountChange={handleCountChange} />;
+        return <MainScreen onCountChange={handleCountChange} onNavigateToGraph={handleNavigateToGraph} />;
     }
   };
 

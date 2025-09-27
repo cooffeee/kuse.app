@@ -21,7 +21,11 @@ interface HabitData {
   activeDays: number;
 }
 
-export default function GraphScreen() {
+interface GraphScreenProps {
+  selectedHabitId?: string | null;
+}
+
+export default function GraphScreen({ selectedHabitId }: GraphScreenProps) {
   const [habitsData, setHabitsData] = useState<HabitData[]>([]);
   const [selectedPeriod, setSelectedPeriod] = useState<'week' | 'month'>('week');
   const { settings } = useApp();
@@ -33,7 +37,11 @@ export default function GraphScreen() {
       const today = new Date();
       const daysToShow = selectedPeriod === 'week' ? 7 : 30;
       
-      settings.habits.forEach((habit) => {
+      const habitsToShow = selectedHabitId 
+        ? settings.habits.filter(habit => habit.id === selectedHabitId)
+        : settings.habits;
+        
+      habitsToShow.forEach((habit) => {
         const dayData: DayData[] = [];
         
         for (let i = daysToShow - 1; i >= 0; i--) {
@@ -68,7 +76,7 @@ export default function GraphScreen() {
     };
 
     loadHistoricalData();
-  }, [selectedPeriod, settings.habits]);
+  }, [selectedPeriod, settings.habits, selectedHabitId]);
 
   // 最大カウント数を取得（グラフのスケール用）
   const getMaxCount = (dayData: DayData[]) => {
