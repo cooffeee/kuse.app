@@ -176,7 +176,7 @@ export default function GraphScreen({ selectedHabitId }: GraphScreenProps) {
                 </div>
                 <div className="inline-flex items-center gap-2 px-4 py-2 bg-white/10 rounded-xl border border-white/20">
                   <span className="text-white text-sm font-semibold">最大カウント:</span>
-                  <span className="text-white font-bold" style={{ color: habitData.habit.color }}>
+                  <span className="text-white font-bold">
                     {maxCount}回
                   </span>
                 </div>
@@ -188,7 +188,7 @@ export default function GraphScreen({ selectedHabitId }: GraphScreenProps) {
                    <div key={day.date} className="flex flex-col items-center flex-1">
                     <div className="w-full flex flex-col items-center">
                       {/* カウント数表示 */}
-                      <div className="text-xs font-semibold text-gray-600 mb-1">
+                      <div className="text-xs font-semibold text-white mb-1">
                         {day.count}
                       </div>
                       
@@ -212,12 +212,12 @@ export default function GraphScreen({ selectedHabitId }: GraphScreenProps) {
               </div>
 
               {/* X軸ラベル */}
-               <div className="flex justify-between text-sm text-gray-300">
+               <div className="flex justify-between text-sm text-white">
                  {habitData.dayData.map((day) => (
                    <div key={day.date} className="flex-1 text-center">
                     <div className="font-semibold">{formatDate(day.date)}</div>
                     {isToday(day.date) && (
-                      <div className="text-xs font-bold mt-1 px-2 py-1 bg-white/20 rounded-lg" style={{ color: habitData.habit.color }}>
+                      <div className="text-xs font-bold mt-1 px-2 py-1 bg-white/20 rounded-lg text-white">
                         今日
                       </div>
                     )}
