@@ -290,6 +290,50 @@ const Character: React.FC<CharacterProps> = ({ count, maxCount }) => {
             />
           </>
         )}
+        
+        {/* 涙（絶望的な表情の時のみ） */}
+        {expression === 'desperate' && (
+          <>
+            {/* 左目の涙 */}
+            <ellipse
+              cx="30"
+              cy="42"
+              rx="1.5"
+              ry="3"
+              fill="#87CEEB"
+              stroke="#4682B4"
+              strokeWidth="0.5"
+            />
+            <ellipse
+              cx="30"
+              cy="45"
+              rx="1"
+              ry="2"
+              fill="#87CEEB"
+              stroke="#4682B4"
+              strokeWidth="0.5"
+            />
+            {/* 右目の涙 */}
+            <ellipse
+              cx="50"
+              cy="42"
+              rx="1.5"
+              ry="3"
+              fill="#87CEEB"
+              stroke="#4682B4"
+              strokeWidth="0.5"
+            />
+            <ellipse
+              cx="50"
+              cy="45"
+              rx="1"
+              ry="2"
+              fill="#87CEEB"
+              stroke="#4682B4"
+              strokeWidth="0.5"
+            />
+          </>
+        )}
       </svg>
     );
   };
