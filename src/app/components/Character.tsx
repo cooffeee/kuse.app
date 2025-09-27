@@ -1,165 +1,74 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 
 interface CharacterProps {
   count: number;
+  maxCount: number;
 }
 
-export default function Character({ count }: CharacterProps) {
-  const [isAnimating, setIsAnimating] = useState(false);
+const Character: React.FC<CharacterProps> = ({ count, maxCount }) => {
+  const [imageError, setImageError] = useState(false);
 
-  // countがNaNまたは無効な値の場合の処理
-  const safeCount = isNaN(count) || count < 0 ? 0 : count;
-
-  // カウントに応じてキャラクターの表情を決定（5段階）
-  const getCharacterState = (count: number) => {
-    if (count === 0) return 'very-happy';      // 0回：とても嬉しい
-    if (count <= 2) return 'happy';            // 1-2回：嬉しい
-    if (count <= 5) return 'neutral';          // 3-5回：普通
-    if (count <= 8) return 'worried';          // 6-8回：心配
-    return 'sad';                              // 9回以上：悲しい
+  // カウント数に基づいて表情を決定（5段階）
+  const getExpression = () => {
+    if (count === 0) return 'neutral'; // 0回: 普通
+    if (count <= maxCount * 0.2) return 'happy'; // 20%以下: 嬉しい
+    if (count <= maxCount * 0.4) return 'excited'; // 40%以下: 興奮
+    if (count <= maxCount * 0.6) return 'very-happy'; // 60%以下: とても嬉しい
+    return 'ecstatic'; // 60%以上: 最高に嬉しい
   };
 
-  const characterState = getCharacterState(safeCount);
-
-  // カウントが変更された時にアニメーションを実行
-  useEffect(() => {
-    if (safeCount > 0) {
-      setIsAnimating(true);
-      const timer = setTimeout(() => setIsAnimating(false), 1000);
-      return () => clearTimeout(timer);
-    }
-  }, [safeCount]);
-
-  // キャラクターの表情に応じた画像（カモノハシ）
-  const renderCharacter = () => {
-    const baseSize = 224; // カウントボタンと同じサイズ（w-56 h-56 = 224px）
-    const animationClass = isAnimating ? 'animate-pulse' : '';
-
-    switch (characterState) {
-      case 'very-happy':
-        return (
-          <div className={`${animationClass} transition-all duration-500`} style={{ backgroundColor: 'transparent' }}>
-            {/* 背景透過を確実にするためのSVGラッパー */}
-            <svg width={baseSize} height={baseSize} viewBox="0 0 224 224" style={{ backgroundColor: 'transparent' }}>
-              <defs>
-                <filter id="shadow" x="-50%" y="-50%" width="200%" height="200%">
-                  <feDropShadow dx="0" dy="4" stdDeviation="8" floodColor="rgba(0,0,0,0.3)"/>
-                </filter>
-              </defs>
-              <image 
-                href="/images/platypus-very-happy.png" 
-                x="0" 
-                y="0" 
-                width="224" 
-                height="224"
-                filter="url(#shadow)"
-                style={{ backgroundColor: 'transparent' }}
-              />
-            </svg>
-          </div>
-        );
-
-      case 'happy':
-        return (
-          <div className={`${animationClass} transition-all duration-500`}>
-            <img 
-              src="/images/platypus-happy.png" 
-              alt="嬉しいカモノハシ" 
-              width={baseSize} 
-              height={baseSize}
-              className="drop-shadow-2xl"
-              style={{ 
-                backgroundColor: 'transparent',
-                backgroundImage: 'none'
-              }}
-            />
-          </div>
-        );
-
-      case 'neutral':
-        return (
-          <div className={`${animationClass} transition-all duration-500`}>
-            <img 
-              src="/images/platypus-neutral.png" 
-              alt="普通のカモノハシ" 
-              width={baseSize} 
-              height={baseSize}
-              className="drop-shadow-2xl"
-              style={{ 
-                backgroundColor: 'transparent',
-                backgroundImage: 'none'
-              }}
-            />
-          </div>
-        );
-
-      case 'worried':
-        return (
-          <div className={`${animationClass} transition-all duration-500`}>
-            <img 
-              src="/images/platypus-worried.png" 
-              alt="心配なカモノハシ" 
-              width={baseSize} 
-              height={baseSize}
-              className="drop-shadow-2xl"
-              style={{ 
-                backgroundColor: 'transparent',
-                backgroundImage: 'none'
-              }}
-            />
-          </div>
-        );
-
-      case 'sad':
-        return (
-          <div className={`${animationClass} transition-all duration-500`}>
-            <img 
-              src="/images/platypus-sad.png" 
-              alt="悲しいカモノハシ" 
-              width={baseSize} 
-              height={baseSize}
-              className="drop-shadow-2xl"
-              style={{ 
-                backgroundColor: 'transparent',
-                backgroundImage: 'none'
-              }}
-            />
-          </div>
-        );
-
-      default:
-        return null;
-    }
+  const expression = getExpression();
+  
+  // カウント数に基づいてメッセージを決定
+  const getMessage = () => {
+    if (count === 0) return '今日も頑張ろう！';
+    if (count <= maxCount * 0.2) return 'いい調子だね！';
+    if (count <= maxCount * 0.4) return 'すごいね！';
+    if (count <= maxCount * 0.6) return '最高だよ！';
+    return '君は本当にすごい！';
   };
 
-  // キャラクターの状態に応じたメッセージ（5段階）
-  const getMessage = (state: string) => {
-    switch (state) {
-      case 'very-happy':
-        return 'やったー！最高だよ！✨';
-      case 'happy':
-        return '今日は調子がいいね！';
-      case 'neutral':
-        return 'まあまあかな？';
-      case 'worried':
-        return '少し心配だよ...';
-      case 'sad':
-        return '大丈夫？';
-      default:
-        return '';
-    }
-  };
+  const message = getMessage();
 
-          return (
-            <div className="text-center flex flex-col items-center">
-              <div className="mb-4 flex justify-center">
-                {renderCharacter()}
-              </div>
-              <div className="text-lg font-medium text-white mb-2 bg-gradient-to-r from-pink-500/20 to-purple-500/20 backdrop-blur-sm rounded-2xl px-4 py-2 border border-white/20">
-                {getMessage(characterState)}
-              </div>
-            </div>
-          );
-}
+  return (
+    <div className="flex flex-col items-center justify-center mt-6">
+      {/* カモノハシキャラクター */}
+      <div className="relative w-20 h-20 mb-4">
+        {!imageError ? (
+          <img
+            src="/images/platypus-very-happy.png"
+            alt="カモノハシキャラクター"
+            className="w-full h-full object-contain"
+            onError={() => setImageError(true)}
+            style={{
+              filter: 'drop-shadow(0 4px 8px rgba(0, 0, 0, 0.2))',
+              backgroundColor: 'transparent !important',
+              backgroundImage: 'none !important',
+              background: 'transparent !important',
+              mixBlendMode: 'normal',
+              isolation: 'isolate',
+              border: 'none',
+              outline: 'none',
+              boxShadow: 'none'
+            }}
+          />
+        ) : (
+          <div className="w-full h-full bg-gradient-to-br from-pink-400 to-purple-500 rounded-2xl flex items-center justify-center shadow-lg">
+            <span className="text-white text-2xl">🦆</span>
+          </div>
+        )}
+      </div>
+      
+      {/* キャラクターのメッセージ */}
+      <div className="text-center">
+        <p className="text-white text-lg font-medium bg-gradient-to-r from-pink-500/20 to-purple-500/20 backdrop-blur-sm rounded-lg px-4 py-2 border border-pink-300/30">
+          {message}
+        </p>
+      </div>
+    </div>
+  );
+};
+
+export default Character;

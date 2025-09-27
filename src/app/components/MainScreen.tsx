@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useCallback } from 'react';
 import { useApp } from '../contexts/AppContext';
+import Character from './Character';
 
 interface MainScreenProps {
   onCountChange: () => void;
@@ -219,7 +220,7 @@ export default function MainScreen({ onCountChange }: MainScreenProps) {
 
 
         {/* メインカウントボタン */}
-        <div className="flex justify-center mb-12">
+        <div className="flex justify-center mb-8">
           <button
             onClick={handleCountClick}
             disabled={!activeHabit}
@@ -244,6 +245,14 @@ export default function MainScreen({ onCountChange }: MainScreenProps) {
             </div>
           </button>
         </div>
+
+        {/* キャラクター */}
+        {activeHabit && (
+          <Character 
+            count={todayCount} 
+            maxCount={activeHabit.dailyGoal} 
+          />
+        )}
 
         {/* 継続日数表示 */}
         <div className="text-center mb-8">
