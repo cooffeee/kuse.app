@@ -11,10 +11,11 @@ const Character: React.FC<CharacterProps> = ({ count, maxCount }) => {
   // カウント数に基づいて表情を決定（5段階）- 癖をなくすためのアプリ
   const getExpression = () => {
     if (count === 0) return 'neutral'; // 0回: 普通
-    if (count <= maxCount * 0.2) return 'worried'; // 20%以下: 心配
-    if (count <= maxCount * 0.4) return 'sad'; // 40%以下: 悲しい
-    if (count <= maxCount * 0.6) return 'very-sad'; // 60%以下: とても悲しい
-    return 'desperate'; // 60%以上: 絶望的
+    if (count <= 3) return 'worried'; // 1-3回: 心配
+    if (count <= 6) return 'sad'; // 4-6回: 悲しい
+    if (count <= 12) return 'very-sad'; // 7-12回: とても悲しい
+    if (count <= 20) return 'desperate'; // 13-20回: 絶望的
+    return 'crying'; // 20回以上: 涙を流す
   };
 
   const expression = getExpression();
@@ -22,10 +23,11 @@ const Character: React.FC<CharacterProps> = ({ count, maxCount }) => {
   // カウント数に基づいてメッセージを決定（癖をなくすためのアプリ）
   const getMessage = () => {
     if (count === 0) return '今日も頑張ろう！';
-    if (count <= maxCount * 0.2) return 'よく耐えてるね...';
-    if (count <= maxCount * 0.4) return '応援してるよ！';
-    if (count <= maxCount * 0.6) return '心配で仕方ないよ...';
-    return 'あきらめないで！';
+    if (count <= 3) return 'よく耐えてるね...';
+    if (count <= 6) return '応援してるよ！';
+    if (count <= 12) return '心配で仕方ないよ...';
+    if (count <= 20) return 'あきらめないで！';
+    return '一緒に頑張ろう...';
   };
 
   const message = getMessage();
@@ -105,14 +107,14 @@ const Character: React.FC<CharacterProps> = ({ count, maxCount }) => {
           cy="35"
           rx="2.5"
           ry="3.5"
-          fill={expression === 'neutral' ? '#333' : expression === 'worried' ? '#FFA500' : expression === 'sad' ? '#FF6B6B' : expression === 'very-sad' ? '#8B0000' : '#4B0000'}
+          fill={expression === 'neutral' ? '#333' : expression === 'worried' ? '#FFA500' : expression === 'sad' ? '#FF6B6B' : expression === 'very-sad' ? '#8B0000' : expression === 'desperate' ? '#4B0000' : '#2B0000'}
         />
         <ellipse
           cx="48"
           cy="35"
           rx="2.5"
           ry="3.5"
-          fill={expression === 'neutral' ? '#333' : expression === 'worried' ? '#FFA500' : expression === 'sad' ? '#FF6B6B' : expression === 'very-sad' ? '#8B0000' : '#4B0000'}
+          fill={expression === 'neutral' ? '#333' : expression === 'worried' ? '#FFA500' : expression === 'sad' ? '#FF6B6B' : expression === 'very-sad' ? '#8B0000' : expression === 'desperate' ? '#4B0000' : '#2B0000'}
         />
         
         {/* 目のハイライト */}
@@ -159,6 +161,14 @@ const Character: React.FC<CharacterProps> = ({ count, maxCount }) => {
         ) : expression === 'desperate' ? (
           <path
             d="M 35 48 Q 40 42 45 48"
+            stroke="#333"
+            strokeWidth="2"
+            fill="none"
+            strokeLinecap="round"
+          />
+        ) : expression === 'crying' ? (
+          <path
+            d="M 35 48 Q 40 40 45 48"
             stroke="#333"
             strokeWidth="2"
             fill="none"
@@ -255,7 +265,7 @@ const Character: React.FC<CharacterProps> = ({ count, maxCount }) => {
               strokeLinecap="round"
             />
           </>
-        ) : expression === 'sad' || expression === 'very-sad' || expression === 'desperate' ? (
+        ) : expression === 'sad' || expression === 'very-sad' || expression === 'desperate' || expression === 'crying' ? (
           <>
             <path
               d="M 28 30 Q 32 33 36 30"
@@ -291,8 +301,8 @@ const Character: React.FC<CharacterProps> = ({ count, maxCount }) => {
           </>
         )}
         
-        {/* 涙（絶望的な表情の時のみ） */}
-        {expression === 'desperate' && (
+        {/* 涙（涙を流す表情の時のみ） */}
+        {expression === 'crying' && (
           <>
             {/* 左目の涙 */}
             <ellipse
