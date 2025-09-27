@@ -3,9 +3,10 @@
 interface NavigationBarProps {
   activeTab: 'main' | 'graph' | 'settings';
   onTabChange: (tab: 'main' | 'graph' | 'settings') => void;
+  onGraphTabClick?: () => void;
 }
 
-export default function NavigationBar({ activeTab, onTabChange }: NavigationBarProps) {
+export default function NavigationBar({ activeTab, onTabChange, onGraphTabClick }: NavigationBarProps) {
   const tabs = [
     {
       id: 'main' as const,
@@ -55,7 +56,13 @@ export default function NavigationBar({ activeTab, onTabChange }: NavigationBarP
             {tabs.map((tab) => (
               <button
                 key={tab.id}
-                onClick={() => onTabChange(tab.id)}
+                onClick={() => {
+                  if (tab.id === 'graph' && onGraphTabClick) {
+                    onGraphTabClick();
+                  } else {
+                    onTabChange(tab.id);
+                  }
+                }}
                 className={`flex flex-col items-center py-2 px-3 rounded-2xl transition-all duration-300 group relative overflow-hidden ${
                   activeTab === tab.id
                     ? 'bg-gradient-to-br from-gray-700 to-gray-800 text-white shadow-2xl transform scale-110 border border-gray-600/50'

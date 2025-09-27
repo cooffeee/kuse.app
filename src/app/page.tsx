@@ -19,6 +19,11 @@ export default function Home() {
     setActiveTab('graph');
   };
 
+  const handleGraphTabClick = () => {
+    setSelectedHabitId(null); // すべての癖を表示
+    setActiveTab('graph');
+  };
+
   const renderActiveScreen = () => {
     switch (activeTab) {
       case 'main':
@@ -40,7 +45,7 @@ export default function Home() {
       </div>
       
       {/* ナビゲーションバー */}
-      <NavigationBar activeTab={activeTab} onTabChange={setActiveTab} />
+      <NavigationBar activeTab={activeTab} onTabChange={setActiveTab} onGraphTabClick={handleGraphTabClick} />
     </div>
   );
 }
